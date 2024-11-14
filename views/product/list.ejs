@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Product List</title>
+</head>
+<body>
+  <h1>Product List</h1>
+  <a href="/product/add">Add Product</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Category Name</th>
+        <th>Category ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.forEach(product => { %>
+        <tr>
+          <td><%= product.id %></td>
+          <td><%= product.name %></td>
+          <td><%= product.category_name %></td>
+          <td><%= product.category_id %></td>
+          <td>
+            <a href="/product/edit/<%= product.id %>">Edit</a>
+            <form method="POST" action="/product/delete/<%= product.id %>" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <div>
+    <a href="/product?page=<%= page - 1 %>">Previous</a>
+    <a href="/product?page=<%= page + 1 %>">Next</a>
+  </div>
+  <a href="/">Back to Home</a>
+</body>
+</html>

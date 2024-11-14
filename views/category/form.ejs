@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Category Form</title>
+</head>
+<body>
+  <h1><%= category.id ? "Edit" : "Add" %> Category</h1>
+  <form method="POST" action="<%= category.id ? '/category/edit/' + category.id : '/category/add' %>">
+    <label for="name">Category Name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value="<%= category.name || '' %>"
+      required
+    />
+    <button type="submit">Submit</button>
+  </form>
+  <a href="/category">Back to Categories</a>
+</body>
+</html>

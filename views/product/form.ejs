@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Product Form</title>
+</head>
+<body>
+  <h1><%= product.id ? "Edit" : "Add" %> Product</h1>
+  <form method="POST" action="<%= product.id ? '/product/edit/' + product.id : '/product/add' %>">
+    <label for="name">Product Name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value="<%= product.name || '' %>"
+      required
+    />
+    <label for="category_id">Category:</label>
+    <select id="category_id" name="category_id" required>
+      <option value="">Select a Category</option>
+      <% categories.forEach(category => { %>
+        <option 
+          value="<%= category.id %>"
+          <%= product.category_id === category.id ? 'selected' : '' %>>
+          <%= category.name %>
+        </option>
+      <% }); %>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+  <a href="/product">Back to Products</a>
+</body>
+</html>
